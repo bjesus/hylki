@@ -77,9 +77,26 @@ nix run github:tbaumann/hylki
 
 ## Beta channel
 
-Betas install alongside the stable app as a separate application
+Flatpak betas install alongside the stable app as a separate application
 (`co.hyprlab.Hylki.Beta`), with their own settings and cache. See
 [hylki.hyprlab.co](https://hylki.hyprlab.co) for the repo address.
+
+On Fedora, betas also come as RPMs from a beta dnf repository. They replace the
+installed `hylki` package rather than sitting beside it, and share its settings.
+Every RPM from 1.43.0 carries the beta repository, switched off; turn it on
+once:
+
+```sh
+sudo dnf config-manager setopt hylki-beta.enabled=1
+sudo dnf upgrade --refresh hylki
+```
+
+A beta version such as `1.44.0~beta.1` sorts before `1.44.0`, so the stable
+release replaces the last beta when it comes out, and the next beta follows it.
+To leave the betas, set `hylki-beta.enabled=0`; dnf won't move back to an older
+version by itself, so run `sudo dnf distro-sync hylki` to return to the
+newest stable. With an RPM older than 1.43.0, add the beta repository with
+`sudo curl -fsSLo /etc/yum.repos.d/hylki-beta.repo https://hylki.hyprlab.co/rpm/hylki-beta.repo`.
 
 ## Other distributions
 

@@ -38,6 +38,11 @@ install -Dm755 hylki %{buildroot}%{_bindir}/hylki
 # /rpm/hylki.repo: an RPM installed from a download then updates with the rest
 # of the system. noreplace keeps a user's own edits (enabled=0) on upgrade.
 install -Dm644 hylki.repo %{buildroot}%{_sysconfdir}/yum.repos.d/hylki.repo
+# The beta repository, off: a beta tester turns it on once (dnf config-manager
+# setopt hylki-beta.enabled=1) and stays on it, since every package, stable or
+# beta, carries the file. Owned by beta builds alone, the first stable to
+# overtake a beta would remove it and quietly end the user's betas.
+install -Dm644 hylki-beta.repo %{buildroot}%{_sysconfdir}/yum.repos.d/hylki-beta.repo
 install -Dm644 %{appid}.desktop %{buildroot}%{_datadir}/applications/%{appid}.desktop
 install -Dm644 %{appid}.metainfo.xml %{buildroot}%{_datadir}/metainfo/%{appid}.metainfo.xml
 for size in 256x256 512x512; do
@@ -61,6 +66,7 @@ done
 %license LICENSE
 %{_bindir}/hylki
 %config(noreplace) %{_sysconfdir}/yum.repos.d/hylki.repo
+%config(noreplace) %{_sysconfdir}/yum.repos.d/hylki-beta.repo
 %{_datadir}/applications/%{appid}.desktop
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/%{appid}.png

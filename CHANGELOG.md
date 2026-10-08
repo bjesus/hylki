@@ -6,7 +6,9 @@
   `/etc/yum.repos.d/hylki.repo`, the signed dnf repository on
   hylki.hyprlab.co, so an RPM installed from a download updates with the rest
   of the system, in GNOME Software or with `dnf upgrade`. The repository can
-  also be added on its own; see docs/INSTALLING.md.
+  also be added on its own; see docs/INSTALLING.md. Betas come as RPMs too,
+  from a beta dnf repository that every RPM carries switched off
+  (`sudo dnf config-manager setopt hylki-beta.enabled=1` turns it on).
 - **Added: Microsoft sign-in on a managed device** (#329, requested by
   erenoglu). Where an organization's Conditional Access lets only a managed
   device sign in, Hylki asks Microsoft's identity broker
