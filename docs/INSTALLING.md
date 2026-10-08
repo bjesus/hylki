@@ -31,12 +31,24 @@ flatpak remote-add --user --if-not-exists hylki https://hylki.hyprlab.co/flatpak
 
 ## Fedora
 
-Download the `.rpm` from the
-[latest release](https://github.com/hyprlab/hylki/releases/latest):
+Add the signed dnf repository on hylki.hyprlab.co and install from it. Hylki
+then updates with the rest of the system, through GNOME Software or
+`dnf upgrade`:
 
 ```sh
-sudo dnf install ./hylki-*.x86_64.rpm
+sudo curl -fsSLo /etc/yum.repos.d/hylki.repo https://hylki.hyprlab.co/rpm/hylki.repo
+sudo dnf install hylki
 ```
+
+dnf asks once to trust the repository's signing key, fingerprint
+`91A0 AC23 CFD8 C720 4417 B899 8E9F 3DC1 7CFF B221` (the Flatpak repository's
+key).
+
+The `.rpm` is also attached to each
+[release](https://github.com/hyprlab/hylki/releases/latest). From 1.43.0 the
+package adds the repository itself, so an RPM installed from a download
+keeps updating too; it is the same `/etc/yum.repos.d/hylki.repo`, kept if you
+edit it (set `enabled=0` to stop updates from it).
 
 The RPM targets current Fedora releases (44+) on x86_64 only. On ARM, or on
 anything older, use the Flatpak or [build from source](BUILDING.md).

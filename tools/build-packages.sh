@@ -36,6 +36,9 @@ build_rpm() {
     mkdir -p "$stage/icons/256x256" "$stage/icons/512x512" "$stage/icons/scalable"
     cp "$ROOT/target/release/hylki"              "$stage/hylki"
     cp "$ROOT/LICENSE"                          "$stage/LICENSE"
+    # The dnf repository on hylki.hyprlab.co, so an RPM installed from a
+    # download keeps updating with the rest of the system.
+    cp "$ROOT/packaging/fedora/hylki.repo"      "$stage/hylki.repo"
     # Launcher and metainfo with their translated fields merged in, and a
     # message catalogue per po/<lang>.po (see po/README.md).
     msgfmt --desktop --template="$ROOT/data/$APP_ID.desktop" -d "$ROOT/po" -o "$stage/$APP_ID.desktop"

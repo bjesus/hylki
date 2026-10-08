@@ -34,6 +34,10 @@ and blocks trackers by default - no telemetry, no analytics.
 
 %install
 install -Dm755 hylki %{buildroot}%{_bindir}/hylki
+# The dnf repository on hylki.hyprlab.co, the same file the site serves at
+# /rpm/hylki.repo: an RPM installed from a download then updates with the rest
+# of the system. noreplace keeps a user's own edits (enabled=0) on upgrade.
+install -Dm644 hylki.repo %{buildroot}%{_sysconfdir}/yum.repos.d/hylki.repo
 install -Dm644 %{appid}.desktop %{buildroot}%{_datadir}/applications/%{appid}.desktop
 install -Dm644 %{appid}.metainfo.xml %{buildroot}%{_datadir}/metainfo/%{appid}.metainfo.xml
 for size in 256x256 512x512; do
@@ -56,6 +60,7 @@ done
 %files -f %{name}.lang
 %license LICENSE
 %{_bindir}/hylki
+%config(noreplace) %{_sysconfdir}/yum.repos.d/hylki.repo
 %{_datadir}/applications/%{appid}.desktop
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %{_datadir}/icons/hicolor/*/apps/%{appid}.png
