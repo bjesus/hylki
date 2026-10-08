@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 1.43.0 — 2026-10-08
+
+Everything from 1.43.0-beta.1 to 1.43.0-beta.7: Microsoft accounts without
+GNOME Online Accounts, templates, Favorites, a single-line message list,
+translating messages, folding messages in a conversation, more formatting
+tools, Fastmail and other JMAP servers, printing with page numbers, and
+right-to-left layout. The RPM now updates through dnf. Russian is complete.
 
 - **Added: RPM updates through dnf.** The RPM installs
   `/etc/yum.repos.d/hylki.repo`, the signed dnf repository on
@@ -263,7 +269,9 @@
   #338 by Ilya Semenkovich) brought up to date with 1.43.0-beta.2, and
   Portuguese for Portugal and Brazil (PR #357 by Paulo Fino) with
   1.43.0-beta.3 and the JMAP sign-in. Russian again (PR #371 by Ilya
-  Semenkovich) with 1.43.0-beta.5, templates included.
+  Semenkovich) with 1.43.0-beta.5, templates included. Greek (PR #377 by
+  Yiannis Ioannides) and French (PR #373 by frenchy82) with 1.43.0-beta.7,
+  and Russian (PR #378 by Ilya Semenkovich) with 1.43.0, now complete.
 - **Fixed: Send with Hylki in GNOME Files went to the stable build when the
   beta was installed beside it.** The extension now opens the files in
   whichever Hylki is the default mail app, and the beta takes every
